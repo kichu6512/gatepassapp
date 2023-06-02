@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "993061945828",
+    "project_id": "outpass-b7368",
+    "storage_bucket": "outpass-b7368.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993061945828:android:f562b7a0530d1690e187f1",
+        "android_client_info": {
+          "package_name": "com.example.rolebasedlogin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "993061945828-mmvpl3rd0ha8bkcpmoevu4iitb4h8gqa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdqOFDRDCBye1UU3ux3f-28yTFf2sVHzw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "993061945828-mmvpl3rd0ha8bkcpmoevu4iitb4h8gqa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
