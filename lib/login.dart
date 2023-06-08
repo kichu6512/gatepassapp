@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:rolebasedlogin/faculty.dart';
 import 'Student.dart';
 import 'Teacher.dart';
 import 'register.dart';
@@ -77,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                               return "Email cannot be empty";
                             }
                             if (!RegExp(
-                                r"^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\.[a-z]+")
+                                    r"^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\.[a-z]+")
                                 .hasMatch(value)) {
                               return "Please enter a valid email";
                             }
@@ -140,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                         MaterialButton(
                           shape: const RoundedRectangleBorder(
                               borderRadius:
-                              BorderRadius.all(Radius.circular(20.0))),
+                                  BorderRadius.all(Radius.circular(20.0))),
                           elevation: 5.0,
                           height: 40,
                           onPressed: () {
@@ -273,7 +274,7 @@ class _LoginPageState extends State<LoginPage> {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => const Teacher(),
+              builder: (context) =>  Teacher(),
             ),
           );
         } else if (role == "Principal") {
@@ -288,7 +289,13 @@ class _LoginPageState extends State<LoginPage> {
             context,
             MaterialPageRoute(builder: (context) => const SecurityPage()),
           );
-        } else {
+        }else if (role == "Faculty") {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => FacultyPage()),
+          );
+        }
+        else {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -332,7 +339,7 @@ class _LoginPageState extends State<LoginPage> {
         await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
         setState(() {
           errorMessage =
-          'Password reset link has been sent to your email address.';
+              'Password reset link has been sent to your email address.';
         });
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
@@ -350,5 +357,3 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 }
-
-

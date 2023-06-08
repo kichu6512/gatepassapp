@@ -26,6 +26,9 @@ class _StudentState extends State<Student> {
   String _currentDepartmentSelected = '';
   List<String> departmentOptions = [];
 
+  String _currentYearSelected = '';
+  List<String> yearOptions = [];
+
   @override
   void dispose() {
     _nameController.dispose();
@@ -41,6 +44,10 @@ class _StudentState extends State<Student> {
   void initState() {
     departmentOptions = ['CSE', 'ECE', 'EEE', 'CE', 'ME'];
     _currentDepartmentSelected = departmentOptions.isNotEmpty ? departmentOptions[0] : '';
+
+    yearOptions = ['1', '2', '3', '4'];
+    _currentYearSelected = yearOptions.isNotEmpty ? yearOptions[0] : '';
+
     super.initState();
   }
 
@@ -50,9 +57,9 @@ class _StudentState extends State<Student> {
       appBar: AppBar(
         title: Row(
           children: [
-            const Icon(Icons.school), // Student icon
-            const SizedBox(width: 8), // Add some spacing between the icon and the title
-            const Text("Student"), // Title text
+            const Icon(Icons.school),
+            const SizedBox(width: 8),
+            const Text("Student"),
           ],
         ),
         backgroundColor: Colors.black,
@@ -113,6 +120,21 @@ class _StudentState extends State<Student> {
                         }
                         return null;
                       },
+                    ),
+                    DropdownButtonFormField<String>(
+                      value: _currentYearSelected,
+                      decoration: const InputDecoration(labelText: 'Year'),
+                      onChanged: (newValue) {
+                        setState(() {
+                          _currentYearSelected = newValue!;
+                        });
+                      },
+                      items: yearOptions.map((year) {
+                        return DropdownMenuItem<String>(
+                          value: year,
+                          child: Text(year),
+                        );
+                      }).toList(),
                     ),
                     GestureDetector(
                       onTap: () {
@@ -193,6 +215,7 @@ class _StudentState extends State<Student> {
                           String name = _nameController.text;
                           String email = _emailController.text;
                           String roll = _rollController.text;
+                          String year = _currentYearSelected;
                           String date = _dateController.text;
                           String time = _timeController.text;
                           String reason = _reasonController.text;
@@ -202,7 +225,7 @@ class _StudentState extends State<Student> {
                           try {
                             User? user = FirebaseAuth.instance.currentUser;
 
-                            String collectionName = 'outpassform$department'; // Get the collection name based on the department
+                            String collectionName = 'outpassform$department$year';
 
                             DocumentReference docRef = await FirebaseFirestore
                                 .instance
@@ -211,6 +234,7 @@ class _StudentState extends State<Student> {
                               'name': name,
                               'email': email,
                               'roll': roll,
+                              'year': year,
                               'date': date,
                               'time': time,
                               'reason': reason,
@@ -327,5 +351,3 @@ class _StudentState extends State<Student> {
     }
   }
 }
-
-

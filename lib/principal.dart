@@ -12,6 +12,7 @@ class MyData {
   final String reason;
   final String email;
   final String date;
+  final String year;
 
   MyData({
     required this.applicationNumber,
@@ -21,6 +22,7 @@ class MyData {
     required this.reason,
     required this.email,
     required this.date,
+    required this.year,
   });
 }
 
@@ -77,6 +79,7 @@ class _PrincipalState extends State<Principal> {
             reason: change.doc['reason'],
             email: change.doc['email'],
             date: change.doc['date'],
+            year: change.doc['year'],
           );
           showNotification('New Request', 'Request by ${newData.name} is Recommended.');
         }
@@ -122,6 +125,7 @@ class _PrincipalState extends State<Principal> {
           reason: doc['reason'],
           email: doc['email'],
           date: doc['date'],
+          year: doc['year']
         );
 
       }).toList();
@@ -193,6 +197,7 @@ class _PrincipalState extends State<Principal> {
           Text('Reason: ${data.reason}'),
           Text('Email: ${data.email}'),
           Text('Date: ${data.date}'),
+          Text('Year: ${data.year}'),
         ],
       ),
       trailing: Row(

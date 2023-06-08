@@ -20,8 +20,7 @@ class _RegisterState extends State<Register> {
   final _auth = FirebaseAuth.instance;
 
   final TextEditingController passwordController = new TextEditingController();
-  final TextEditingController confirmpassController =
-      new TextEditingController();
+  final TextEditingController confirmpassController = new TextEditingController();
   final TextEditingController name = new TextEditingController();
   final TextEditingController emailController = new TextEditingController();
   final TextEditingController mobile = new TextEditingController();
@@ -33,7 +32,7 @@ class _RegisterState extends State<Register> {
   ];
   var _currentItemSelected = "Student";
   var role = "Student";
-  var department = 'Department'; // Replace 'Department' with your desired default value
+  var department = 'Department'; 
 
   String _currentDepartmentSelected = "";
   List<String> departmentOptions = [];
@@ -79,7 +78,7 @@ class _RegisterState extends State<Register> {
                           'assets/images/gplogo2.png',
                           height: 200,
                           scale: 2.5,
-                          // color: Color.fromARGB(255, 15, 147, 59),
+                      
                         ),
                         const Text(
                           "Register Now",

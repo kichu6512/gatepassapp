@@ -6,9 +6,7 @@ import 'package:rolebasedlogin/principal.dart';
 import 'register.dart';
 import 'student.dart';
 import 'teacher.dart';
-
 import 'security.dart';
-
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 Future<void> main() async {
@@ -39,7 +37,6 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     user = FirebaseAuth.instance.currentUser;
     initializeNotifications();
-
   }
 
   void initializeNotifications() {
@@ -52,8 +49,6 @@ class _MyAppState extends State<MyApp> {
     );
     flutterLocalNotificationsPlugin.initialize(initializationSettings);
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -157,10 +152,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void navigateToRegister() async {
     await Future.delayed(const Duration(seconds: 2)); // Add a delay of 2 seconds
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => Register()),
-    );
+    if (mounted) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Register()),
+      );
+    }
   }
 }
-
